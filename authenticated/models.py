@@ -1,17 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import Permission, PermissionsMixin
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 from rest_framework_simplejwt.tokens import RefreshToken
 # Create your models here.
 
-class UserManager(models.Model):
+class UserManager(BaseUserManager):
     def create_user(self, username, email, password=None):
         if username is None:
             raise TypeError('Users should have a usernama')
         if email is None:
             raise TypeError('Users should have a email')
-        user = self.module(username=username, email=self.normalize_email(email))
+        user = self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
         user.save()
         return user

@@ -52,7 +52,7 @@ class RegisterView(generics.GenericAPIView):
 
 class VerifyEmail(views.APIView):
     serializer_class = EmailVerificationSerializer
-    token_param_config = openapi.Parametr(
+    token_param_config = openapi.Parameter(
         'token', in_=openapi.IN_QUERY, description = 'Description', type=openapi.TYPE_STRING
     )
 
